@@ -1,5 +1,9 @@
 import os
 
+restaurantes = [{"nome":"Five guys", "categoria":"Hamburger", "ativo":True}, 
+                {"nome":"Subway", "categoria":"Sanduiche", "ativo":False}, 
+                {"nome":"Mangai", "categoria":"Comida Tipica", "ativo":True}]
+
 def exibir_nome_programa():
     print("SABOR EXPRESS\n")
 
@@ -10,13 +14,36 @@ def exibir_opcoes():
     print("4. Sair\n")
 
 def finalizar_app():
-    os.system("cls")
-    print("Finalizando o programa")
+    exibir_subtitulo("Finalizando o programa")
+
+def voltar_ao_menu_principal():
+    input("Digite uma tecla para voltar ao menu:")
+    main()
 
 def opcao_invalida():
     print("Opção inválida!\n")
-    input("Digite uma tecla para voltar ao menu principal:")
-    main()
+    voltar_ao_menu_principal()
+
+def exibir_subtitulo(texto):
+    os.system("cls")
+    print(texto)
+    print()
+
+def cadastrar_novo_restaurante():
+    exibir_subtitulo("Cadastro de novos restaurantes")
+    nome_do_restaurante = input("Digite o nome do restaurante desejado para cadastar:")
+    restaurantes.append(nome_do_restaurante)
+    print(f"O restaurante {nome_do_restaurante} foi cadastrado com sucesso!\n")
+    voltar_ao_menu_principal()
+
+def listar_restaurantes():
+    exibir_subtitulo("listando restaurantes:")
+    for restaurante in restaurantes:
+        nome_restaurante = restaurante["nome"]
+        categoria = restaurante["categoria"]
+        ativo = restaurante["ativo"]
+        print(f"- {nome_restaurante} | {categoria} | {ativo}")
+    voltar_ao_menu_principal()
 
 def escolher_opcao():
     try:
@@ -25,9 +52,9 @@ def escolher_opcao():
 
         match ocpcao_escolhida:
             case 1:
-                print("Adicionar restaurante")
+                cadastrar_novo_restaurante()
             case 2:
-                print("Listar restaurante")
+                listar_restaurantes()
             case 3:
                 print("Ativar restaurante")
             case 4:
