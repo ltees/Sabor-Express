@@ -18,5 +18,4 @@ class Restaurante:
 restaurante_praca = Restaurante("Praça", "Gourmet")
 restaurante_pizza = Restaurante("Pizza Express", "Italiana")
 
-print(restaurante_praca)
-print(restaurante_pizza)
+Restaurante.listar_restaurantes()
